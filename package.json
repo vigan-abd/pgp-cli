@@ -1,7 +1,7 @@
 {
   "name": "pgp-cli",
   "version": "0.5.0",
-  "description": "'Simple cli tool for encrypting and decrypting openpgp messages'",
+  "description": "Simple cli tool for encrypting and decrypting openpgp messages",
   "main": "index.js",
   "bin": {
     "pgp-cli": "bin/pgp-cli.js"
