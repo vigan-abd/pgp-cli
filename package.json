@@ -1,0 +1,54 @@
+{
+  "name": "pgp-cli",
+  "version": "0.5.0",
+  "description": "'Simple cli tool for encrypting and decrypting openpgp messages'",
+  "main": "index.js",
+  "bin": {
+    "pgp-cli": "bin/pgp-cli.js"
+  },
+  "scripts": {
+    "docs": "mkdir -p docs && jsdoc2md --no-cache --files ./src/*.js ./src/**/*.js > docs/DEFINITIONS.md",
+    "format": "standard --fix",
+    "lint": "standard",
+    "test": "npm run lint && npm run unit",
+    "unit": "NODE_ENV=test mocha ./test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vigan-abd/pgp-cli.git"
+  },
+  "keywords": [
+    "pgp",
+    "openpgp",
+    "gpg",
+    "cli"
+  ],
+  "author": {
+    "name": "vigan.abd",
+    "email": "vigan.abd@gmail.com"
+  },
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/vigan-abd/pgp-cli/issues"
+  },
+  "homepage": "https://github.com/vigan-abd/pgp-cli#readme",
+  "dependencies": {
+    "openpgp": "^5.0.0-1",
+    "yargs": "^16.2.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-as-promised": "^7.1.1",
+    "dirty-chai": "^2.0.1",
+    "husky": "^6.0.0",
+    "jsdoc-to-markdown": "^7.0.1",
+    "mocha": "^8.3.2",
+    "standard": "^16.0.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run test"
+    }
+  }
+}
