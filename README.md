@@ -1,6 +1,6 @@
 # pgp-cli
 
-[![Build Status](https://travis-ci.com/vigan-abd/pgp-cli.svg?branch=master)](https://travis-ci.com/vigan-abd/pgp-cli)
+[![Build Status](https://travis-ci.com/vigan-abd/pgp-cli.svg?branch=main)](https://travis-ci.com/vigan-abd/pgp-cli)
 
 **`pgp-cli`** is a simple cross platform cli tool for encrypting and decrypting
 openpgp messages.
