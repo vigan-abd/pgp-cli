@@ -3,6 +3,7 @@
 'use strict'
 
 const fs = require('fs').promises
+const readline = require('readline')
 const { PGPUtil } = require('..')
 const pkg = require('../package.json')
 const yargs = require('yargs')
@@ -17,7 +18,6 @@ const yargs = require('yargs')
     'decrypt',
     'decrypts the file with given private key',
     (y) => y.option('key', { type: 'string', alias: 'k', desc: 'path to private key', demandOption: true })
-      .option('passphrase', { type: 'string', alias: 'p', desc: 'passphrase for decrypting private key' })
       .option('file', { type: 'string', alias: 'f', desc: 'file that will be decrypted', demandOption: true })
       .option('output', { type: 'string', alias: 'o', desc: 'optional output file path, if omited stdout will be used' })
   )
@@ -25,6 +25,15 @@ const yargs = require('yargs')
   .recommendCommands()
   .version(pkg.version)
   .help()
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+})
+rl.stdoutMuted = false
+rl._writeToOutput = (str) => {
+  rl.output.write(rl.stdoutMuted ? '*' : str)
+}
 
 const cmds = ['encrypt', 'decrypt']
 
@@ -45,7 +54,19 @@ const main = async () => {
     }
 
     if (cmd === 'decrypt') {
-      await pgp.loadPrivKeyFromFile(argv.key, argv.passphrase)
+      await pgp.loadPrivKeyFromFile(argv.key)
+
+      if (!pgp.privkey.isDecrypted()) {
+        const passphrase = await new Promise((resolve) => {
+          rl.question('Enter passphrase: ', (passphrase) => {
+            rl.stdoutMuted = false
+            console.log()
+            resolve(passphrase)
+          })
+          rl.stdoutMuted = true
+        })
+        await pgp.privkey.decrypt(passphrase)
+      }
       output = await pgp.decrypt(input)
     }
 
@@ -58,6 +79,8 @@ const main = async () => {
     console.log(output)
   } catch (err) {
     console.error(err)
+  } finally {
+    rl.close()
   }
 }
 
