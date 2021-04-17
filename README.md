@@ -1,6 +1,7 @@
 # pgp-cli
 
 [![Build Status](https://travis-ci.com/vigan-abd/pgp-cli.svg?branch=main)](https://travis-ci.com/vigan-abd/pgp-cli)
+![npm](https://img.shields.io/npm/v/pgp-cli)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/vigan-abd/pgp-cli.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/vigan-abd/pgp-cli/alerts/)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/vigan-abd/pgp-cli.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/vigan-abd/pgp-cli/context:javascript)
 
