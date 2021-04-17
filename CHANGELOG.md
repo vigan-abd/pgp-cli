@@ -1,3 +1,6 @@
+# 0.5.2
+- security fix: adjusted option for receiving passphrase only through std input
+
 # 0.5.1
 - bugfix: cli tool couldn't resolve node executable
 
