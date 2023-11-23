@@ -1,3 +1,6 @@
+# 1.0.0
+- bug fix: fixed issues with unstable dependencies
+
 # 0.5.2
 - security fix: adjusted option for receiving passphrase only through std input
 
