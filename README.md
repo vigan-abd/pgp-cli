@@ -68,7 +68,7 @@ const { PGPUtil, PGP_KEY_TYPES } = require('pgp-cli')
 
 const pgp = new PGPUtil()
 await pgp.generateKeyPair({
-  userIds: [{ name: 'test', email: 'test@mail.com' }],
+  userIDs: [{ name: 'test', email: 'test@mail.com' }],
   type: PGP_KEY_TYPES.KEY_TYPE_RSA,
   rsaBits: 2048,
   passphrase: '123456',

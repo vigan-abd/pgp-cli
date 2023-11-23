@@ -19,16 +19,16 @@ class PGPUtil {
 
   /**
    * @param {string|Buffer} content - PGP public key raw content
-   * @returns {Promise<openpgp.Key>}
+   * @returns {Promise<openpgp.PublicKey>}
    */
   async loadPubKey (content) {
-    this.pubkey = await openpgp.readKey({ armoredKey: content })
+    this.pubkey = await openpgp.readKey({ armoredKey: content.toString() })
     return this.pubkey
   }
 
   /**
    * @param {fs.PathLike} fpath - PGP public key file path
-   * @returns {Promise<openpgp.Key>}
+   * @returns {Promise<openpgp.PublicKey>}
    */
   async loadPubKeyFromFile (fpath) {
     const content = await fs.promises.readFile(fpath)
@@ -38,18 +38,20 @@ class PGPUtil {
   /**
    * @param {string|Buffer} content - PGP private key raw content
    * @param {string|string[]} [passphrase] - Passphrase for decrypting key, if omited the key won't be decrypted, skip it when key is already decrypted
-   * @returns {Promise<openpgp.Key>}
+   * @returns {Promise<openpgp.PrivateKey>}
    */
   async loadPrivKey (content, passphrase = null) {
-    this.privkey = await openpgp.readKey({ armoredKey: content })
-    if (passphrase) await this.privkey.decrypt(passphrase)
+    this.privkey = await openpgp.readKey({ armoredKey: content.toString() })
+    if (passphrase) {
+      this.privkey = await openpgp.decryptKey({ privateKey: this.privkey, passphrase })
+    }
     return this.privkey
   }
 
   /**
    * @param {fs.PathLike} fpath - PGP private key file path
    * @param {string|string[]} [passphrase] - Passphrase for decrypting key, if omited the key won't be decrypted, skip it when key is already decrypted
-   * @returns {Promise<openpgp.Key>}
+   * @returns {Promise<openpgp.PrivateKey>}
    */
   async loadPrivKeyFromFile (fpath, passphrase = null) {
     const content = await fs.promises.readFile(fpath)
@@ -61,13 +63,13 @@ class PGPUtil {
    * @returns {Promise<{ pubkey: string, privkey: string, revokeCert: string }>}
    */
   async generateKeyPair (opts) {
-    const { publicKeyArmored, privateKeyArmored, revocationCertificate } = await openpgp.generateKey(opts)
-    this.pubkey = await this.loadPubKey(publicKeyArmored)
-    this.privkey = await this.loadPrivKey(privateKeyArmored, opts.passphrase)
+    const { publicKey, privateKey, revocationCertificate } = await openpgp.generateKey(opts)
+    this.pubkey = await this.loadPubKey(publicKey)
+    this.privkey = await this.loadPrivKey(privateKey, opts.passphrase)
 
     return {
-      pubkey: publicKeyArmored,
-      privkey: privateKeyArmored,
+      pubkey: publicKey,
+      privkey: privateKey,
       revokeCert: revocationCertificate
     }
   }
@@ -95,8 +97,8 @@ class PGPUtil {
    */
   async encrypt (message) {
     const msg = await openpgp.encrypt({
-      message: openpgp.Message.fromText(message),
-      publicKeys: this.pubkey
+      message: await openpgp.createMessage({ text: message }),
+      encryptionKeys: this.pubkey
     })
 
     return msg.toString()
@@ -110,7 +112,7 @@ class PGPUtil {
     const msg = await openpgp.readMessage({ armoredMessage: message })
     const decrypted = await openpgp.decrypt({
       message: msg,
-      privateKeys: this.privkey
+      decryptionKeys: this.privkey
     })
 
     return decrypted.data.toString()

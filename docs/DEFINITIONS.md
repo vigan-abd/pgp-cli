@@ -7,10 +7,10 @@ PGP utility class that is useful for performing basic operations
 
 * [PGPUtil](#PGPUtil)
     * [new PGPUtil([opts])](#new_PGPUtil_new)
-    * [.loadPubKey(content)](#PGPUtil+loadPubKey) ⇒ <code>Promise.&lt;openpgp.Key&gt;</code>
-    * [.loadPubKeyFromFile(fpath)](#PGPUtil+loadPubKeyFromFile) ⇒ <code>Promise.&lt;openpgp.Key&gt;</code>
-    * [.loadPrivKey(content, [passphrase])](#PGPUtil+loadPrivKey) ⇒ <code>Promise.&lt;openpgp.Key&gt;</code>
-    * [.loadPrivKeyFromFile(fpath, [passphrase])](#PGPUtil+loadPrivKeyFromFile) ⇒ <code>Promise.&lt;openpgp.Key&gt;</code>
+    * [.loadPubKey(content)](#PGPUtil+loadPubKey) ⇒ <code>Promise.&lt;openpgp.PublicKey&gt;</code>
+    * [.loadPubKeyFromFile(fpath)](#PGPUtil+loadPubKeyFromFile) ⇒ <code>Promise.&lt;openpgp.PublicKey&gt;</code>
+    * [.loadPrivKey(content, [passphrase])](#PGPUtil+loadPrivKey) ⇒ <code>Promise.&lt;openpgp.PrivateKey&gt;</code>
+    * [.loadPrivKeyFromFile(fpath, [passphrase])](#PGPUtil+loadPrivKeyFromFile) ⇒ <code>Promise.&lt;openpgp.PrivateKey&gt;</code>
     * [.generateKeyPair(opts)](#PGPUtil+generateKeyPair) ⇒ <code>Promise.&lt;{pubkey: string, privkey: string, revokeCert: string}&gt;</code>
     * [.exportKeyPair([passphrase])](#PGPUtil+exportKeyPair) ⇒ <code>Promise.&lt;{pubkey: ?string, privkey: ?string}&gt;</code>
     * [.encrypt(message)](#PGPUtil+encrypt) ⇒ <code>Promise.&lt;string&gt;</code>
@@ -28,7 +28,7 @@ PGP utility class that is useful for performing basic operations
 
 <a name="PGPUtil+loadPubKey"></a>
 
-### pgpUtil.loadPubKey(content) ⇒ <code>Promise.&lt;openpgp.Key&gt;</code>
+### pgpUtil.loadPubKey(content) ⇒ <code>Promise.&lt;openpgp.PublicKey&gt;</code>
 **Kind**: instance method of [<code>PGPUtil</code>](#PGPUtil)  
 
 | Param | Type | Description |
@@ -37,7 +37,7 @@ PGP utility class that is useful for performing basic operations
 
 <a name="PGPUtil+loadPubKeyFromFile"></a>
 
-### pgpUtil.loadPubKeyFromFile(fpath) ⇒ <code>Promise.&lt;openpgp.Key&gt;</code>
+### pgpUtil.loadPubKeyFromFile(fpath) ⇒ <code>Promise.&lt;openpgp.PublicKey&gt;</code>
 **Kind**: instance method of [<code>PGPUtil</code>](#PGPUtil)  
 
 | Param | Type | Description |
@@ -46,7 +46,7 @@ PGP utility class that is useful for performing basic operations
 
 <a name="PGPUtil+loadPrivKey"></a>
 
-### pgpUtil.loadPrivKey(content, [passphrase]) ⇒ <code>Promise.&lt;openpgp.Key&gt;</code>
+### pgpUtil.loadPrivKey(content, [passphrase]) ⇒ <code>Promise.&lt;openpgp.PrivateKey&gt;</code>
 **Kind**: instance method of [<code>PGPUtil</code>](#PGPUtil)  
 
 | Param | Type | Default | Description |
@@ -56,7 +56,7 @@ PGP utility class that is useful for performing basic operations
 
 <a name="PGPUtil+loadPrivKeyFromFile"></a>
 
-### pgpUtil.loadPrivKeyFromFile(fpath, [passphrase]) ⇒ <code>Promise.&lt;openpgp.Key&gt;</code>
+### pgpUtil.loadPrivKeyFromFile(fpath, [passphrase]) ⇒ <code>Promise.&lt;openpgp.PrivateKey&gt;</code>
 **Kind**: instance method of [<code>PGPUtil</code>](#PGPUtil)  
 
 | Param | Type | Default | Description |

@@ -1,6 +1,6 @@
 {
   "name": "pgp-cli",
-  "version": "0.5.2",
+  "version": "1.0.0",
   "description": "Simple cli tool for encrypting and decrypting openpgp messages",
   "main": "index.js",
   "bin": {
@@ -33,17 +33,17 @@
   },
   "homepage": "https://github.com/vigan-abd/pgp-cli#readme",
   "dependencies": {
-    "openpgp": "^5.0.0-1",
-    "yargs": "^16.2.0"
+    "openpgp": "^5.11.0",
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "chai": "^4.3.4",
+    "chai": "^4.3.10",
     "chai-as-promised": "^7.1.1",
     "dirty-chai": "^2.0.1",
-    "husky": "^6.0.0",
-    "jsdoc-to-markdown": "^7.0.1",
-    "mocha": "^8.3.2",
-    "standard": "^16.0.3"
+    "husky": "^8.0.3",
+    "jsdoc-to-markdown": "^8.0.0",
+    "mocha": "^10.2.0",
+    "standard": "^17.1.0"
   },
   "husky": {
     "hooks": {
