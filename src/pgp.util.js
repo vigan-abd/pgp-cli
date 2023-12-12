@@ -9,8 +9,8 @@ const openpgp = require('openpgp')
 class PGPUtil {
   /**
    * @param {object} [opts] - Default keys used for encryption/decryption
-   * @param {openpgp.Key} [opts.pubkey] - Public key
-   * @param {openpgp.Key} [opts.privkey] - Private key, should be decrypted for proper usage!
+   * @param {openpgp.PublicKey} [opts.pubkey] - Public key
+   * @param {openpgp.PrivateKey} [opts.privkey] - Private key, should be decrypted for proper usage!
    */
   constructor (opts = {}) {
     this.pubkey = opts.pubkey || null

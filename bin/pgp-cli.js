@@ -65,7 +65,7 @@ const main = async () => {
           })
           rl.stdoutMuted = true
         })
-        await pgp.privkey.decrypt(passphrase)
+        await pgp.loadPrivKeyFromFile(argv.key, passphrase)
       }
       output = await pgp.decrypt(input)
     }

@@ -1,3 +1,6 @@
+# 1.0.1
+- bug fix: fixed issues with passphrase decryption of priv key in cli
+
 # 1.0.0
 - bug fix: fixed issues with unstable dependencies
 
