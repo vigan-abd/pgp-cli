@@ -94,8 +94,6 @@ console.log(decrypted)
 
 Additional detailed examples can be found in [examples folder](./examples).
 
-Also full documentation related classes can be found in [docs/DEFINITIONS.md](./docs/DEFINITIONS.md)
-
 
 ## Testing
 
