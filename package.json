@@ -35,6 +35,9 @@
     "openpgp": "^5.11.3",
     "yargs": "^17.7.2"
   },
+  "engines": {
+    "node": ">=22"
+  },
   "devDependencies": {
     "@bitfinex/lint-js": "^1.1.0",
     "brittle": "^4.5.0"
