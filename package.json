@@ -1,17 +1,16 @@
 {
   "name": "pgp-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simple cli tool for encrypting and decrypting openpgp messages",
   "main": "index.js",
   "bin": {
     "pgp-cli": "bin/pgp-cli.js"
   },
   "scripts": {
-    "docs": "mkdir -p docs && jsdoc2md --no-cache --files ./src/*.js ./src/**/*.js > docs/DEFINITIONS.md",
-    "format": "standard --fix",
-    "lint": "standard",
+    "format": "bfx-lint-js . --fix",
+    "lint": "bfx-lint-js .",
     "test": "npm run lint && npm run unit",
-    "unit": "NODE_ENV=test mocha ./test"
+    "unit": "NODE_ENV=test brittle-node test/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -33,22 +32,11 @@
   },
   "homepage": "https://github.com/vigan-abd/pgp-cli#readme",
   "dependencies": {
-    "openpgp": "^5.11.0",
+    "openpgp": "^5.11.3",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "chai": "^4.3.10",
-    "chai-as-promised": "^7.1.1",
-    "dirty-chai": "^2.0.1",
-    "husky": "^8.0.3",
-    "jsdoc-to-markdown": "^8.0.0",
-    "mocha": "^10.2.0",
-    "standard": "^17.1.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run test"
-    }
+    "@bitfinex/lint-js": "^1.1.0",
+    "brittle": "^4.5.0"
   }
 }
